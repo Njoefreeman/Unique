@@ -1,15 +1,16 @@
 !/usr/bin/node
+
 const fs = require('fs');
 const path = require('path');
 
 class UniqueInt {
     constructor() {
-        this.seen = new Array(2047).fill(false); // Boolean array for integers from -1023 to 1023
+        this.seen = new Array(2047).fill(false); // Setting Boolean array for integers from -1023 to 1023
         this.minInt = -1023;
     }
 
     processFile(inputFilePath, outputFilePath) {
-        // Reset seen array for each file
+        // Reset seen array for each file to be procesed
         this.seen = new Array(2047).fill(false);
         const uniqueNumbers = this.readUniqueIntegers(inputFilePath);
         this.writeUniqueIntegers(uniqueNumbers, outputFilePath);
@@ -25,7 +26,7 @@ class UniqueInt {
             if (strippedLine) {
                 if (this.isValidIntegerLine(strippedLine)) {
                     const number = parseInt(strippedLine, 10);
-                    if (number >= -1023 && number <= 1023) { // Ensure the number is within range
+                    if (number >= -1023 && number <= 1023) { // Ensure the number is within the specified range
                         if (!this.seen[number - this.minInt]) {
                             this.seen[number - this.minInt] = true;
                             uniqueNumbers.push(number);
@@ -72,9 +73,9 @@ class UniqueInt {
         fs.writeFileSync(outputFilePath, data, 'utf-8');
     }
 }
-
-const inputFolder = './input';
-const outputFolder = './output';
+// setting input path and output path
+const inputFolder = './input_files';
+const outputFolder = './output_files';
 
 const uniqueIntProcessor = new UniqueInt();
 
