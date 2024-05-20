@@ -1,6 +1,4 @@
 # Unique
-Certainly! Here's a README file for your Node.js script:
-
 ---
 
 # Unique Integer Processor
